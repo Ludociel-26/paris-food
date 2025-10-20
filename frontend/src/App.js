@@ -1,7 +1,12 @@
 import { useEffect } from "react";
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import MenuPage from "./pages/MenuPage";
+import { LanguageProvider } from "./contexts/LanguageContext";
+import HomePage from "./pages/HomePage";
+import MenuPageNew from "./pages/MenuPageNew";
+import LocationPage from "./pages/LocationPage";
+import GalleryPage from "./pages/GalleryPage";
+import SocialPage from "./pages/SocialPage";
 
 function App() {
   useEffect(() => {
@@ -21,13 +26,19 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<MenuPage />} />
-        </Routes>
-      </BrowserRouter>
-    </div>
+    <LanguageProvider>
+      <div className="App">
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/menu" element={<MenuPageNew />} />
+            <Route path="/location" element={<LocationPage />} />
+            <Route path="/gallery" element={<GalleryPage />} />
+            <Route path="/social" element={<SocialPage />} />
+          </Routes>
+        </BrowserRouter>
+      </div>
+    </LanguageProvider>
   );
 }
 
